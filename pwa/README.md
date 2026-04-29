@@ -1,4 +1,4 @@
-# Tiny Auth - Progressive Web App
+# 2FA-Auth-Lite - Progressive Web App
 
 [English](#english) | [中文](./README.zh.md)
 

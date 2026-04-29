@@ -1,6 +1,6 @@
 {
-    "name": "Tiny Auth",
-    "short_name": "Tiny Auth",
+    "name": "2FA-Auth-Lite",
+    "short_name": "2FA-Auth-Lite",
     "description": "Generate TOTP codes for two-factor authentication",
     "start_url": "./",
     "scope": "./",

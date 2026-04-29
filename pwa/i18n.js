@@ -72,7 +72,7 @@ export const T = {
 
     en: {
         // List view
-        appTitle: "Tiny Auth",
+        appTitle: "2FA-Auth-Lite",
         subtitle: "Click code to copy",
         hint: "Use your setup key only on your own device.",
         copied: "Copied",

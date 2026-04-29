@@ -1,4 +1,4 @@
-# Tiny Auth - 渐进式 Web 应用
+# 2FA-Auth-Lite - 渐进式 Web 应用
 
 可安装到手机和桌面的 Web 应用版本。
 
