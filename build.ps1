@@ -64,7 +64,7 @@ try {
     Get-ChildItem -Path $tmp -Recurse -File | ForEach-Object {
         $relativePath = $_.FullName.Substring((Join-Path $PWD $tmp).Length + 1).Replace('\', '/')
         [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($zipArchive, $_.FullName, $relativePath) | Out-Null
-        Write-Host "  → $relativePath"
+        Write-Host "  + $relativePath"
     }
 } finally {
     $zipArchive.Dispose()
