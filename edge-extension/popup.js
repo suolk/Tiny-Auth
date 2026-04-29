@@ -5,7 +5,7 @@ import {
     accounts, editingAccountId, pendingDeleteAccountId, isShowingSecret, isNewAccount,
     setAccounts, setCurrentLang, setIsShowingSecret, setIsNewAccount,
     addAccountBtn, langSwitch,
-    backBtn, cancelBtn, scanQrBtn, captureQrBtn, scanHelpBtn, helpBackBtn,
+    backBtn, cancelBtn, uploadQrBtn, scanQrBtn, scanHelpBtn, helpBackBtn,
     qrFileInput, toggleSecretBtn, editSecretInput,
     accountListEl, editNameInput, editSiteNameInput, editSiteUrlInput,
     confirmBar, confirmYesBtn, confirmNoBtn,
@@ -166,8 +166,8 @@ langSwitch.addEventListener("click", async (event) => {
 addAccountBtn.addEventListener("click", addAccount);
 backBtn.addEventListener("click", goBack);
 cancelBtn.addEventListener("click", cancelEdit);
-scanQrBtn.addEventListener("click", () => qrFileInput.click());
-captureQrBtn.addEventListener("click", captureAndScanQr);
+uploadQrBtn.addEventListener("click", () => qrFileInput.click());
+scanQrBtn.addEventListener("click", captureAndScanQr);
 scanHelpBtn.addEventListener("click", () => showView("help"));
 helpBackBtn.addEventListener("click", () => showView("editor"));
 qrFileInput.addEventListener("change", () => {

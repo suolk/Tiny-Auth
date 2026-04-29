@@ -6,7 +6,7 @@ import {
     viewList, viewEditor, viewHelp,
     accountListEl, langSwitch,
     editorTitle, editNameInput, editSiteNameInput, editSiteUrlInput, editSecretInput,
-    cancelBtn, scanQrBtn, scanHelpBtn,
+    cancelBtn, uploadQrBtn, scanQrBtn, scanHelpBtn,
     toggleSecretBtn, confirmBar, confirmText, confirmYesBtn, confirmNoBtn,
     toastEditorEl,
 } from "./state.js";
@@ -30,7 +30,8 @@ export function applyLang() {
     editSecretInput.placeholder = t("placeholderKey");
     editSiteNameInput.placeholder = t("placeholderSiteName");
     editSiteUrlInput.placeholder = t("placeholderSiteUrl");
-    scanQrBtn.textContent = t("btnUploadQr");
+    uploadQrBtn.textContent = t("btnUploadQr");
+    scanQrBtn.textContent = t("btnScanQr");
     cancelBtn.textContent = t("btnCancel");
     scanHelpBtn.textContent = t("btnScanHelp");
     confirmYesBtn.textContent = t("btnConfirmYes");
