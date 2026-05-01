@@ -6,6 +6,11 @@
 
 ## 安装
 
+### 从商店安装
+
+- [**Edge 扩展商店**](https://microsoftedge.microsoft.com/addons/detail/mlgkegmodaokoabknaehdahemdiebejg)
+
+
 ### 从 GitHub Releases 安装
 
 1. 访问 [Releases 页面](https://github.com/suolk/2FA-Auth-Lite/releases/tag/v1.0.0)
@@ -15,11 +20,6 @@
    - Edge: `edge://extensions`
 4. 启用**开发者模式**
 5. 将解压后的 zip 文件夹拖入页面，或点击**加载已解压的扩展程序**并选择解压后的文件夹
-
-### 从商店安装
-
-- **Edge 扩展商店** - 审核中，即将上架
-
 
 ## 使用方法
 

@@ -8,6 +8,10 @@ Browser extension version for Chrome, Edge, and other Chromium-based browsers.
 
 ## Installation
 
+### From Store
+
+- [**Edge Add-ons Store**](https://microsoftedge.microsoft.com/addons/detail/mlgkegmodaokoabknaehdahemdiebejg)
+
 ### From GitHub Releases
 
 1. Visit the [Releases page](https://github.com/suolk/2FA-Auth-Lite/releases/tag/v1.0.0)
@@ -17,10 +21,6 @@ Browser extension version for Chrome, Edge, and other Chromium-based browsers.
    - Edge: `edge://extensions`
 4. Enable **Developer mode**
 5. Drag the extracted zip folder into the page, or click **Load unpacked** and select the extracted folder
-
-### From Store
-
-- **Edge Add-ons Store** - Under review, coming soon
 
 ## Usage
 
