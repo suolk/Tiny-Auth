@@ -120,11 +120,16 @@
                         <button type="button" class="lang-btn" data-lang="zh">中</button>
                         <button type="button" class="lang-btn" data-lang="en">En</button>
                     </div>
+                    <button id="exportBtn" type="button" class="secondary io-btn"></button>
+                    <button id="importBtn" type="button" class="secondary io-btn"></button>
                     <button id="addAccountBtn" type="button" class="add-btn">+</button>
                 </div>
             </div>
 
             <section id="accountList" class="account-list"></section>
+
+            <div id="toastList" class="toast hidden" aria-live="polite"></div>
+            <input id="importFileInput" type="file" accept="application/json" class="hidden" />
 
             <p class="hint" id="hint"></p>
 

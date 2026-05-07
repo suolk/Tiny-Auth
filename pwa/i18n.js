@@ -128,5 +128,14 @@ export const T = {
         toastSaveError: "Cannot save account.",
         toastNoAccount: "No account selected",
         toastImageNoDimensions: "Image has no dimensions",
+
+        // Import / Export
+        btnExport: "Export",
+        btnImport: "Import",
+        exportWarning: "Warning: the export contains plaintext secrets. Keep it safe and do not share.",
+        toastExportDone: "Exported",
+        toastImportDone: (n) => `Imported ${n} accounts`,
+        toastImportSkipped: (n) => `Skipped ${n} duplicate secrets`,
+        toastImportFailed: "Import failed. Invalid file format.",
     },
 };

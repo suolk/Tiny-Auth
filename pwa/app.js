@@ -6,17 +6,17 @@ import { DEFAULT_LANG } from "./i18n.js";
 import {
     accounts, editingAccountId, pendingDeleteAccountId, isShowingSecret, isNewAccount,
     setAccounts, setCurrentLang, setIsShowingSecret, setIsNewAccount,
-    addAccountBtn, langSwitch,
+    addAccountBtn, langSwitch, exportBtn, importBtn, importFileInput,
     backBtn, cancelBtn, saveBtn, scanQrBtn, scanHelpBtn, helpBackBtn,
     qrFileInput, toggleSecretBtn, editSecretInput,
     accountListEl, editNameInput, editSiteNameInput, editSiteUrlInput,
     confirmBar, confirmYesBtn, confirmNoBtn,
-    viewHelp, viewEditor,
+    viewHelp, viewEditor, currentLang,
 } from "./state.js";
 import {
     t, applyLang, showView,
     setEditorStatus, markCopied, openDeleteConfirm, closeDeleteConfirm,
-    renderAccounts, setProgress, showEditor, hideEditor,
+    renderAccounts, setProgress, showEditor, hideEditor, setListStatus,
 } from "./ui.js";
 import { scanQrFromFile } from "./qr.js";
 
@@ -152,6 +152,92 @@ async function copyCode(accountId) {
     }
 }
 
+function buildExportPayload() {
+    return {
+        version: 1,
+        exportedAt: new Date().toISOString(),
+        accounts: accounts.map(({ username, secret, siteName, siteUrl }) => ({
+            username,
+            secret,
+            siteName,
+            siteUrl,
+        })),
+    };
+}
+
+function downloadJson(payload) {
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = `2fa-auth-lite-${new Date().toISOString().slice(0, 10)}.json`;
+    anchor.click();
+    URL.revokeObjectURL(url);
+}
+
+async function exportAccounts() {
+    if (!window.confirm(t("exportWarning"))) return;
+    downloadJson(buildExportPayload());
+    setListStatus(t("toastExportDone"));
+}
+
+function combineImportMessage(imported, skipped) {
+    const done = t("toastImportDone", imported);
+    if (!skipped) return done;
+    const skippedMsg = t("toastImportSkipped", skipped);
+    return currentLang === "zh" ? `${done}，${skippedMsg}` : `${done}. ${skippedMsg}`;
+}
+
+async function importAccountsFromFile(file) {
+    try {
+        const text = await file.text();
+        const parsed = JSON.parse(text);
+        const list = Array.isArray(parsed)
+            ? parsed
+            : (Array.isArray(parsed?.accounts) ? parsed.accounts : null);
+        if (!list) throw new Error("Invalid format");
+
+        const existingSecrets = new Set(
+            accounts
+                .map((account) => normalizeBase32(account.secret || ""))
+                .filter(Boolean)
+        );
+
+        let imported = 0;
+        let skipped = 0;
+
+        for (const item of list) {
+            if (!item || typeof item !== "object") continue;
+            const rawSecret = typeof item.secret === "string" ? item.secret : "";
+            const normalized = normalizeBase32(rawSecret);
+            if (!normalized) continue;
+            try {
+                decodeBase32(normalized);
+            } catch {
+                continue;
+            }
+            if (existingSecrets.has(normalized)) {
+                skipped += 1;
+                continue;
+            }
+            const username = typeof item.username === "string" ? item.username : (typeof item.name === "string" ? item.name : "");
+            const siteName = typeof item.siteName === "string" ? item.siteName : "";
+            const siteUrl = typeof item.siteUrl === "string" ? item.siteUrl : "";
+            accounts.push(createAccount(username, normalized, siteName, siteUrl));
+            existingSecrets.add(normalized);
+            imported += 1;
+        }
+
+        if (!imported && !skipped) throw new Error("No valid accounts");
+
+        await persistAccounts(accounts);
+        await refreshCodes();
+        setListStatus(combineImportMessage(imported, skipped));
+    } catch {
+        setListStatus(t("toastImportFailed"), true);
+    }
+}
+
 // ── Events ──
 
 console.log('=== Binding event listeners ===');
@@ -178,6 +264,8 @@ langSwitch.addEventListener("click", async (event) => {
 });
 
 addAccountBtn.addEventListener("click", addAccount);
+exportBtn.addEventListener("click", exportAccounts);
+importBtn.addEventListener("click", () => importFileInput.click());
 console.log('=== addAccountBtn click listener added ===');
 backBtn.addEventListener("click", goBack);
 cancelBtn.addEventListener("click", cancelEdit);
@@ -189,6 +277,11 @@ qrFileInput.addEventListener("change", () => {
     const file = qrFileInput.files?.[0];
     if (file) scanQrFromFile(file);
     qrFileInput.value = "";
+});
+importFileInput.addEventListener("change", () => {
+    const file = importFileInput.files?.[0];
+    if (file) importAccountsFromFile(file);
+    importFileInput.value = "";
 });
 confirmYesBtn.addEventListener("click", confirmDeleteAccount);
 confirmNoBtn.addEventListener("click", closeDeleteConfirm);
