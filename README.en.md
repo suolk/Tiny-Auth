@@ -12,6 +12,7 @@ A lightweight TOTP (Time-based One-Time Password) authenticator for two-factor a
 
 - **Browser Extension** - Quick access from your browser toolbar
 - **Progressive Web App (PWA)** - Installable standalone app for mobile and desktop
+- **Import / Export** - Batch export/import as a JSON file
 
 ## Browser Extension
 - **[Download from GitHub Releases](https://github.com/suolk/Tiny-Auth/releases/tag/v1.0.0)**
