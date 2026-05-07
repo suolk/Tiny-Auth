@@ -12,6 +12,8 @@ Browser extension version for Chrome, Edge, and other Chromium-based browsers.
 
 - [**Edge Add-ons Store**](https://microsoftedge.microsoft.com/addons/detail/mlgkegmodaokoabknaehdahemdiebejg)
 
+- [**FireFox Add-ons Store**](https://addons.mozilla.org/zh-CN/firefox/addon/2fa-auth-lite/)
+
 ### From GitHub Releases
 
 1. Visit the [Releases page](https://github.com/suolk/2FA-Auth-Lite/releases/tag/v1.0.0)

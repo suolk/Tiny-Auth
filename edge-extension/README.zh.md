@@ -10,7 +10,8 @@
 
 - [**Edge 扩展商店**](https://microsoftedge.microsoft.com/addons/detail/mlgkegmodaokoabknaehdahemdiebejg)
 
-
+- [**FireFox 扩展商店**](https://addons.mozilla.org/zh-CN/firefox/addon/2fa-auth-lite/)
+  
 ### 从 GitHub Releases 安装
 
 1. 访问 [Releases 页面](https://github.com/suolk/2FA-Auth-Lite/releases/tag/v1.0.0)
