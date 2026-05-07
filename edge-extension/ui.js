@@ -7,8 +7,9 @@ import {
     accountListEl, langSwitch,
     editorTitle, editNameInput, editSiteNameInput, editSiteUrlInput, editSecretInput,
     cancelBtn, uploadQrBtn, scanQrBtn, scanHelpBtn,
+    exportBtn, importBtn,
     toggleSecretBtn, confirmBar, confirmText, confirmYesBtn, confirmNoBtn,
-    toastEditorEl,
+    toastEditorEl, toastListEl,
 } from "./state.js";
 
 // ── i18n ──
@@ -34,6 +35,8 @@ export function applyLang() {
     scanQrBtn.textContent = t("btnScanQr");
     cancelBtn.textContent = t("btnCancel");
     scanHelpBtn.textContent = t("btnScanHelp");
+    exportBtn.textContent = t("btnExport");
+    importBtn.textContent = t("btnImport");
     confirmYesBtn.textContent = t("btnConfirmYes");
     confirmNoBtn.textContent = t("btnConfirmNo");
 
@@ -105,6 +108,12 @@ export function showToast(el, timerRef, message, isError = false) {
 
 export function setEditorStatus(message, isError = false) {
     toastEditorTimerId = showToast(toastEditorEl, toastEditorTimerId, message, isError);
+}
+
+let toastListTimerId = null;
+
+export function setListStatus(message, isError = false) {
+    toastListTimerId = showToast(toastListEl, toastListTimerId, message, isError);
 }
 
 // ── Copied state ──

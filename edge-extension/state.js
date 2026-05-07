@@ -24,6 +24,9 @@ export const viewHelp = document.getElementById("viewHelp");
 export const accountListEl = document.getElementById("accountList");
 export const langSwitch = document.getElementById("langSwitch");
 export const addAccountBtn = document.getElementById("addAccountBtn");
+export const exportBtn = document.getElementById("exportBtn");
+export const importBtn = document.getElementById("importBtn");
+export const importFileInput = document.getElementById("importFileInput");
 
 // ── DOM: Editor view ──
 export const backBtn = document.getElementById("backBtn");
@@ -44,3 +47,4 @@ export const confirmText = document.getElementById("confirmText");
 export const confirmYesBtn = document.getElementById("confirmYesBtn");
 export const confirmNoBtn = document.getElementById("confirmNoBtn");
 export const toastEditorEl = document.getElementById("toastEditor");
+export const toastListEl = document.getElementById("toastList");
